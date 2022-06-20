@@ -101,5 +101,4 @@ public class IntegerPrimitives {
 		}
 		return count / 8; 
 	}
-	
 }
