@@ -13,7 +13,7 @@ public class SportLotoAppl {
 		int res[] = new int[0];
 		for (int i = 0; i < 7; i++) {
 			int number = getRandomNumber(1, 49);
-			ArrayInt.addNumber(res, number);
+			ArrayInt.addNumber(res, number); // bug: there may be repeated numbers
 		}
 		System.out.println(Arrays.toString(res));
 	}
