@@ -60,6 +60,7 @@ public class ArrayInt {
 		return res;
 	}
 	public static void sort(int[] ar) {
+		//for worst case the number of iterations = N(N-1)/2
 		boolean flSorted = true;
 		int length = ar.length;
 		do {
@@ -107,8 +108,7 @@ public class ArrayInt {
 			middle = (left + right) / 2;
 		}
 		return left > right ? -(left + 1) : getFirstIndex(ar, middle, number);
-		//TODO
-		// fix the code for performing the method in accordance with the above definition (see the tests)
+
 	}
 	private static int getFirstIndex(int[] ar, int middle, int number) {
 		while(middle >= 0 && ar[middle]==number) {
