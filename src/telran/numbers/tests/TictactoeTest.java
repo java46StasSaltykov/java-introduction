@@ -38,6 +38,7 @@ class TictactoeTest {
 				{'0', '0'}
 		};
 		
+		
 		assertEquals(1, TictactoeGame.tictactoeMove(matrix1, 2, 2, '0'));
 		assertEquals(1, TictactoeGame.tictactoeMove(matrix1, 2, 2, 'x'));
 		assertEquals(1, TictactoeGame.tictactoeMove(matrix2, 2, 2, '0'));

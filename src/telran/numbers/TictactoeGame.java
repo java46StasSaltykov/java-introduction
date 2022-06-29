@@ -63,6 +63,7 @@ public class TictactoeGame {
 		return 2;
 	}	
 	
+	
 	static char[] insertNumber(char ar[], int index, char symb) {
 		char res[] = new char[ar.length + 1];
 		System.arraycopy(ar, 0, res, 0, index);
