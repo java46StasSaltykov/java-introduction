@@ -66,7 +66,7 @@ public class ArrayInt {
 		do {
 			flSorted = moveMaxToEnd(ar, length);
 			length--;
-		}while(!flSorted);
+		}while(!flSorted); 
 		
 		
 	}
@@ -99,21 +99,19 @@ public class ArrayInt {
 		int left = 0;
 		int right = ar.length - 1;
 		int middle = ar.length / 2;
-		while (left <= right && ar[middle] != number) {
+		int res = -1;
+		while (left <= right ) {
 			if (ar[middle] < number) {
 				left = middle + 1; //looking for the number will be in right part of the array
 			} else {
+				if (ar[middle] == number) {
+					res = middle;
+				}
 				right = middle - 1; //looking for the number will be in the left part of the array
 			}
 			middle = (left + right) / 2;
 		}
-		return left > right ? -(left + 1) : getFirstIndex(ar, middle, number);
-
+		return res == -1 ? -(left + 1) : res;
 	}
-	private static int getFirstIndex(int[] ar, int middle, int number) {
-		while(middle >= 0 && ar[middle]==number) {
-			middle--;
-		}
-		return middle + 1;
-	}
+	
 }
