@@ -114,4 +114,127 @@ public class Strings {
 		return ar;
 	}
 	
+	public static String join(String[] array, String delimiter) {
+		//String "+" operator based solution
+		return stringPluseSolution(array, delimiter);
+		//StringBuilder atted based solution
+		//return stringBuilderSolution(array, delimiter);
+	}
+
+	private static String stringBuilderSolution(String[] array, String delimiter) {
+		StringBuilder strBuilder = new StringBuilder(array[0]);
+		for (int i = 1; i < array.length; i++) {
+			strBuilder.append(delimiter).append(array[i]);
+		}
+		return strBuilder.toString();
+	}
+	
+	private static String stringPluseSolution(String[] array, String delimiter) {
+		String res = array[0]; //assumption there is at least one string
+		for (int i = 1; i < array.length; i++) {
+			res += delimiter + array[i];
+		}
+		return res;
+	}
+	
+	/**
+	 * 
+	 * @param name1 - first name 
+	 * @param name2 - second name
+	 * @return either "match" or "no match" in accordance to the comments (see todo)
+	 */
+	public static String matches(String name1, String name2) {
+		String nameAr1[] = name1.split(" ");
+		String nameAr2[] = name2.split(" ");
+
+		if (nameAr1.length == 1 && nameAr2.length == 1) {
+			int compareRes = nameAr1[0].compareToIgnoreCase(nameAr2[0]);
+			if (compareRes == 0) {
+				return "match";
+			} else {
+				return "no match";
+			}
+		}
+
+		if (nameAr1[0].toLowerCase().equals(nameAr2[0].toLowerCase()) && nameAr1[1].charAt(0) == nameAr2[1].charAt(0) && 
+				(nameAr1[1].length() == 1 || nameAr2[1].length() == 1)) {
+			return "match";
+		}
+		
+		if (nameAr1.length == nameAr2.length) {
+			for (int i = 0; i < nameAr1.length; i++) {
+				int count = 0;
+				if (nameAr1[i].toLowerCase().equals(nameAr2[i].toLowerCase())) {
+					count++;
+				}
+				if (count == 3) {
+					return "match"; 
+				}
+			}
+		} else {
+			if (nameAr1[nameAr1.length - 1].toLowerCase().equals(nameAr2[nameAr2.length - 1].toLowerCase())) {
+				for (int i = 0; i < nameAr1.length - 1; i++) {
+					for (int j = 0; j < nameAr2.length - 1; j++) {
+						if (nameAr1[i].equals(nameAr2[j])) {
+							return "match";
+						}
+					}
+				}
+			}
+		}
+		
+		return "no match";
+	}
+	
+	/**
+	 * sorts array of strings
+	 * @param strNumbers array of strings containing the integer numbers
+	 * length of each string can not be more than three symbols
+	 * String containing "123" should be greater than the string containing "23" as the number 123 is greater than 23
+	 */
+	public static String[] sortStringsAsNumbers(String[] strNumbers) {
+		int strToInt[] = new int[strNumbers.length];
+		for (int i = 0; i < strToInt.length; i++) {
+			strToInt[i] = Integer.parseInt(strNumbers[i]);
+		}
+		int maxValue = findMax(strToInt);
+		int helper[] = new int[maxValue + 1];
+		for (int i = 0; i < strToInt.length; i++) {
+			int count = 0;
+			for(int j = 0; j < strToInt.length; j++) {
+				if (strToInt[i] == strToInt[j]) {
+					count++;
+				}
+				helper[strToInt[i]] = count;
+			}
+		}
+		String res[] = new String[helper.length];
+		for (int i = 0; i < helper.length; i++) {
+			if (helper[i] != 0) {
+				res[i] = String.valueOf(i);
+			}
+		}
+		return res;
+	}
+
+	private static int findMax(int[] array) {
+		int largest = array[0];
+		for (int i = 1; i < array.length; i++) {
+			if (array[i] > largest) {
+				largest = array[i];
+			}
+		} 
+		return largest;
+	}
+
 }
+
+
+
+
+
+
+
+
+
+

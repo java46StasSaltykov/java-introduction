@@ -58,6 +58,16 @@ class StringsStandardTests {
 		int b = 10;
 		assertEquals(strExpected, String.format("a=%d", b / 2));
 	}
+	@Test
+	void replaceTest() {
+		String str = "Hello";
+//		str = str.concat(" Vasya");
+		str = str.replace("ello", "allo");
+		assertEquals("Hallo", str);
+		StringBuilder strBuilder = new StringBuilder("Hello");
+		strBuilder.replace(1, 5, "allo");
+		assertEquals("Hallo", strBuilder.toString());
+	}
 
 }
 
