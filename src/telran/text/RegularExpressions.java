@@ -15,7 +15,7 @@ public class RegularExpressions {
 
 	public static String ipV4Regex() {
 
-		return String.format("((%s)\\.){3}(%s)", ipOctetRegex(), ipOctetRegex());
+		return String.format("((%1$s)\\.){3}(%1$s)", ipOctetRegex());
 	}
 
 	/**
@@ -28,7 +28,14 @@ public class RegularExpressions {
 	 *         according to assumption a + (-10 * 2) => wrong
 	 */
 	public static String arithmeticExpression() {
-		return "\\w|(\\w[/*+-]\\w)|(\\w[/*+-]\\w){1,999}";
+		String operator = "[-+*/]";
+		String operand = operandRegex();
+		return String.format("\\(*%1$s\\)*(%2$s\\(*%1$s\\)*)*", operand, operator);
+	}
+	/*************************************************************************/
+	private static String operandRegex() {
+		String number = "(\\d+.?\\d*|.\\d+)";
+		return String.format("(%1$s|%2$s)", number, javaVariableRegex());
 	}
 
 }

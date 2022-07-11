@@ -244,7 +244,9 @@ public class Strings {
 		if (!checkParentheses(expression)) {
 			return false;
 		}
-		expression = removeSpacesAndParentheses(expression);
+		// expression = removeSpacesAndParentheses(expression);
+		expression = removeSpaces(expression);
+
 		return expression.matches(arithmeticExpression());
 	}
 
@@ -253,8 +255,14 @@ public class Strings {
 	 * @param expression returns string with no parentheses and no spaces
 	 */
 	private static String removeSpacesAndParentheses(String expression) {
-		String res = expression.replaceAll("[()\\s]+", "");
-		return res;
+
+		return expression.replaceAll("[\\s()]+", "");
+
+	}
+
+	private static String removeSpaces(String expression) {
+
+		return expression.replaceAll("\\s+", "");
 
 	}
 
@@ -265,28 +273,18 @@ public class Strings {
 	 *         (ab))((cd) - false
 	 */
 	private static boolean checkParentheses(String expression) {
+		char[] strArray = expression.toCharArray();
 		int count = 0;
-		boolean res = false;
-		int length = expression.length();
-		for (int i = 0; i < length; i++) {
-			char c = expression.charAt(i);
-			if (c == '(') {
+		for (int i = 0; i < strArray.length; i++) {
+			if (strArray[i] == '(') {
 				count++;
-			} else if (c == ')') {
+			} else if (strArray[i] == ')') {
 				count--;
+				if (count < 0) {
+					return false;
+				}
 			}
-			res = count == 0 ? true : false;
 		}
-		return res;
+		return count == 0;
 	}
 }
-
-
-
-
-
-
-
-
-
-
